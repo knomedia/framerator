@@ -1,26 +1,17 @@
 var React = require('react');
+var PlayerStore = require('./stores/player_store');
 var HeaderBar = require('./components/header_bar');
 var FrameRotator = require('./components/frame_rotator');
+var playerStoreListener = require('./mixins/player_store_listener');
 
 var Main = React.createClass({
 
-  getInitialState () {
-    return {
-      urls: [
-        "https://grafana.insops.net/#/dashboard/script/request.js?app=Canvas&controller=files&action=index",
-        "https://grafana.insops.net/#/dashboard/script/request.js?app=Canvas&users=files&action=index",
-        "https://grafana.insops.net/#/dashboard/script/request.js?app=Canvas&controller=app_center&action=index",
-        "https://grafana.insops.net/#/dashboard/script/request.js?app=Canvas&controller=quizzes-quiz_submissions_api&action=index",
-        "https://grafana.insops.net/#/dashboard/script/request_db.js?app=Canvas&controller=quizzes-quiz_submissions_api&action=index"
-      ],
-      currentIndex: 0,
-      displayDuration: 7000,
-      active: true
-    }
-  },
+  mixins: [playerStoreListener],
 
   componentDidMount () {
-    this.scheduleRotation(100);
+    if (this.state.active) {
+      this.scheduleRotation(100);
+    }
   },
 
   scheduleRotation (delay) {
@@ -48,7 +39,10 @@ var Main = React.createClass({
     return (
       <div>
         <HeaderBar onStop={this.handleStop} />
-        <FrameRotator url={url} />
+        { (url)?
+          <FrameRotator url={url} />
+          : null
+        }
       </div>
     );
   }
