@@ -1,7 +1,17 @@
 .HeaderBar {
   position: fixed;
   width: 100%;
-  height: 100px;
+  height: 150px;
+  top: -110px;
   background: $dark;
   color: $white;
+  z-index: 1000;
+  opacity: 0.0;
+  transition: all 0.2s ease-out;
+}
+
+.HeaderBar:hover {
+  top: 0px;
+  opacity: 0.95;
+  border-bottom: solid 1px $white;
 }

@@ -14,7 +14,8 @@ var Main = React.createClass({
         "https://grafana.insops.net/#/dashboard/script/request_db.js?app=Canvas&controller=quizzes-quiz_submissions_api&action=index"
       ],
       currentIndex: 0,
-      displayDuration: 7000
+      displayDuration: 7000,
+      active: true
     }
   },
 
@@ -28,19 +29,25 @@ var Main = React.createClass({
   },
 
   rotateUrls () {
-    var idx = this.state.currentIndex;
-    idx++;
-    if (idx >= this.state.urls.length) {
-      idx = 0;
+    if (this.state.active) {
+      var idx = this.state.currentIndex;
+      idx++;
+      if (idx >= this.state.urls.length) {
+        idx = 0;
+      }
+      this.setState({currentIndex: idx}, this.scheduleRotation);
     }
-    this.setState({currentIndex: idx}, this.scheduleRotation);
+  },
+
+  handleStop () {
+    this.setState({active: false});
   },
 
   render () {
     var url = this.state.urls[this.state.currentIndex];
     return (
       <div>
-        <HeaderBar />
+        <HeaderBar onStop={this.handleStop} />
         <FrameRotator url={url} />
       </div>
     );
