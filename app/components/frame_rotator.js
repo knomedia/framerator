@@ -42,6 +42,7 @@ var FrameRotator = React.createClass({
         <iframe key={this.state.currentUrl}
                 ref='iframe1'
                 src={this.state.currentUrl}
+                style={{display: 'none'}}
                 allowTransparency={true}
         />
       </div>
