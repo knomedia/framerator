@@ -85,14 +85,52 @@ var HeaderBar = React.createClass({
     return urlHelper.getCurrentUrl(this.getCurrentIndex());
   },
 
+  renderUrlDot (url, id, current) {
+    var style = {
+      borderRadius: '15px',
+      width: '15px',
+      height: '15px',
+      backgroundColor: '#333',
+      float: 'left',
+      marginRight: '4px'
+
+    };
+    if (current) {
+      style.backgroundColor = 'red';
+    }
+    return (
+      <Link to='play' params={{id: id}}>
+        <div className='HeaderBar__UrlDot' style={style}>
+        </div>
+      </Link>
+    );
+  },
+
+  renderUrlList (currentUrl) {
+    return this.state.urls.map(function(u, i) {
+      return this.renderUrlDot(u ,i+1, (u === currentUrl));
+    }.bind(this));
+  },
+
   renderCurrentInfo () {
+    var currentUrl = urlHelper.getCurrentUrl(this.getCurrentIndex());
     return (
       <div className='HeaderBar__CurrentInfo'>
-        <div>
-          <a href={this.getDisplayUrl()}>{this.getDisplayUrl()}</a>
-        </div>
-        <div>
-          {this.getCurrentIndex()} of {this.state.urls.length}
+        {currentUrl}
+      </div>
+    );
+  },
+
+  renderDots () {
+    var currentUrl = urlHelper.getCurrentUrl(this.getCurrentIndex());
+    var allUrls = this.renderUrlList(currentUrl);
+    return (
+      <div className='HeaderBar__Selection'>
+        <div style={{margin: '0 auto', width: '100%', position: 'relative'}}>
+          {allUrls}
+          <div style={{float: 'left', fontSize: '0.85em', marginLeft: '10px'}}>
+            {this.getCurrentIndex()} of {this.state.urls.length}
+          </div>
         </div>
       </div>
     );
@@ -106,6 +144,7 @@ var HeaderBar = React.createClass({
           <Link className='HeaderBar__Editlink' to='edit'>⚙</Link>
         </div>
         {this.renderControls()}
+        {this.renderDots()}
         {this.renderCurrentInfo()}
       </div>
     );

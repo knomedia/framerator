@@ -120,7 +120,6 @@ var FrameRotator = React.createClass({
     var triad = this.getUrlTriad();
     return (
       <div>
-      {this.renderUrlList(triad.current)}
       <div className="FrameRotator">
         <iframe key={triad.prev}
                 ref='iframe0'

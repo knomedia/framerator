@@ -2,7 +2,7 @@
   position: fixed;
   width: 100%;
   height: 150px;
-  top: -110px;
+  top: -90px;
   background: $dark;
   color: $white;
   z-index: 1000;
@@ -37,13 +37,20 @@ a.HeaderBar__Controls__button {
 .HeaderBar__CurrentInfo {
   text-align: center;
   position: absolute;
-  left: 15%;
-  width: 70%;
-  bottom: 5px;
+  left: 5%;
+  width: 90%;
+  bottom: 25px;
   a {
     color: $white;
   }
 }
+
+.HeaderBar__Selection {
+  position: absolute;
+  right: 12px;
+  top: 60px;
+}
+
 .HeaderBar__Editlink {
   color: $white;
   padding: 10px;
