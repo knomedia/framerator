@@ -2,6 +2,7 @@
 @import "./components/header_bar.scss";
 @import "./components/frame_rotator.scss";
 @import "./views/edit.scss";
+@import "./components/url_editor.scss";
 
 
 body {
@@ -18,6 +19,9 @@ body {
 
 .red {
   color: $red;
+}
+.primary-font {
+  color: $primary;
 }
 
 .primary {

@@ -74,7 +74,12 @@ var UrlEditor = React.createClass({
       );
     } else {
       return (
-        <span tabIndex={0} onFocus={this.handleFocus}>{url}</span>
+        <span tabIndex={0}
+              onFocus={this.handleFocus}
+              className='UrlEditor__Url'
+        >
+          {url}
+        </span>
       );
     }
   },
@@ -88,7 +93,7 @@ var UrlEditor = React.createClass({
             <i className='icon-cancel-circled-outline red' />
           </button>
         </div>
-        <div className='pure-u-1-24'>
+        <div className='pure-u-1-24 UrlEditor__Link'>
           <a href={url} target='_blank' ref='link'>
             <i className='icon-link' />
           </a>

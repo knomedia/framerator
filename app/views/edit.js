@@ -15,6 +15,18 @@ var Edit = React.createClass({
     PlayerStore.setState(newState);
   },
 
+  handleAddClick () {
+    var allUrls = this.state.urls;
+    allUrls.push('https://www.google.com');
+    PlayerStore.setState({urls: allUrls}, function() {
+      // wait for it
+      window.setTimeout(function() {
+        var urls = document.querySelectorAll('.UrlEditor__Url');
+        urls[urls.length - 1].focus();
+      }.bind(this), 100);
+    });
+  },
+
   renderForm () {
     return (
       <form className='pure-form' onSubmit={this.handleSubmit}>
@@ -26,16 +38,19 @@ var Edit = React.createClass({
                id='displayDuration'
                defaultValue={this.state.displayDuration}
                autoFocus={true}
+               onBlur={this.handleSubmit}
                className='pure-input'
         />
-        <button type='submit' className='pure-button primary'>Save</button>
+        <button type='submit' className='pure-button primary'>
+          <i className='icon-floppy' />
+        </button>
       </form>
     );
   },
 
-  renderUrl (url) {
+  renderUrl (url, i) {
     return (
-      <UrlEditor key={url} url={url} store={PlayerStore} />
+      <UrlEditor key={url + i} url={url} store={PlayerStore} />
     );
   },
 
@@ -43,7 +58,19 @@ var Edit = React.createClass({
     var urls = this.state.urls.map(this.renderUrl);
     return (
       <div>
-        <h2>Urls</h2>
+        <div className='pure-g'>
+          <div className='pure-u-1-12'>
+            <h2>Urls</h2>
+          </div>
+          <div className='pure-u-11-12'>
+            <button className='non-button primary-font'
+                    style={{marginTop: '23px'}}
+                    onClick={this.handleAddClick}
+            >
+              <i className='icon-plus-outline' />
+            </button>
+          </div>
+        </div>
         {urls}
       </div>
     );
