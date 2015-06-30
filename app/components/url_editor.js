@@ -42,7 +42,7 @@ var UrlEditor = React.createClass({
     if (confirm(message)) {
       var allUrls = this.getAllUrls();
       var index = this.getUrlIndex();
-      allUrls.splice(1, 1);
+      allUrls.splice(index, 1);
       this.props.store.setState({urls: allUrls});
     }
   },
