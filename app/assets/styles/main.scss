@@ -1,9 +1,12 @@
 @import "variables.scss";
 @import "./components/header_bar.scss";
 @import "./components/frame_rotator.scss";
+@import "./views/edit.scss";
 
 
 body {
   padding: 0;
   margin: 0;
+  background: $lightGrey;
+  color: $almostDark;
 }
