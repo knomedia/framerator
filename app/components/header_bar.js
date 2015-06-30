@@ -30,7 +30,7 @@ var HeaderBar = React.createClass({
   renderPlayPause () {
     if (PlayerStore.getState().active) {
       return (
-        <button className='pure-button HeaderBar__Controls__button'
+        <button className='pure-button primary HeaderBar__Controls__button'
                 onClick={this.handlePlayPauseClick.bind(this, false)}
                 style={{fontSize: '1.0em'}}
         >
@@ -39,7 +39,7 @@ var HeaderBar = React.createClass({
       );
     } else {
       return (
-        <button className='pure-button HeaderBar__Controls__button'
+        <button className='pure-button primary HeaderBar__Controls__button'
                 onClick={this.handlePlayPauseClick.bind(this, true)}
                 style={{fontSize: '0.5em'}}
         >
@@ -56,15 +56,21 @@ var HeaderBar = React.createClass({
     return (
       <div className='HeaderBar__Controls' style={{fontSize: '1.8em'}}>
         <Link to='play'
+              params={{id: 1}}
+              className='pure-button primary HeaderBar__Controls__button'
+        >
+          ‹‹
+        </Link>
+        <Link to='play'
               params={{id: prevIndex}}
-              className='pure-button HeaderBar__Controls__button'
+              className='pure-button primary HeaderBar__Controls__button'
         >
           ‹
         </Link>
         {this.renderPlayPause()}
         <Link to='play'
               params={{id: nextIndex}}
-              className='pure-button HeaderBar__Controls__button'
+              className='pure-button primary HeaderBar__Controls__button'
         >
           ›
         </Link>
