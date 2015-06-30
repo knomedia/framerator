@@ -32,7 +32,7 @@ var Edit = React.createClass({
   renderForm () {
     return (
       <form className='pure-form' onSubmit={this.handleSubmit}>
-        <label htmlFor='displayDuration'>
+        <label htmlFor='displayDuration' style={{paddingRight: '10px'}}>
           Display Duration
         </label>
         <input type='text'
