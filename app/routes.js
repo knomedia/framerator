@@ -1,3 +1,5 @@
+require('./assets/fontello/css/animation.css');
+require('./assets/fontello/css/fontello.css'); // font icons
 require('../node_modules/purecss/build/base-min.css');
 require('../node_modules/purecss/build/pure-min.css');
 require('../node_modules/purecss/build/grids-responsive-min.css');

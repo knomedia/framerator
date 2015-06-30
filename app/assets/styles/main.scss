@@ -10,3 +10,29 @@ body {
   background: $lightGrey;
   color: $almostDark;
 }
+
+.non-button {
+  border: none;
+  background: none;
+}
+
+.red {
+  color: $red;
+}
+
+.primary {
+  background: $primary;
+  color: $white;
+}
+.error {
+  background: $error;
+  color: $white;
+}
+.warning {
+  background: $warning;
+  color: $white;
+}
+.success {
+  background: $success;
+  color: $white;
+}

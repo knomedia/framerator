@@ -1,6 +1,7 @@
 var React = require('react');
 var PlayerStore = require('../stores/player_store');
 var playerStoreListener = require('../mixins/player_store_listener');
+var UrlEditor = require('../components/url_editor');
 
 var Edit = React.createClass({
 
@@ -27,21 +28,14 @@ var Edit = React.createClass({
                autoFocus={true}
                className='pure-input'
         />
-        <button type='submit' className='pure-button'>Save</button>
+        <button type='submit' className='pure-button primary'>Save</button>
       </form>
     );
   },
 
   renderUrl (url) {
     return (
-      <div key={url} className='pure-g'>
-        <div className='pure-u-1-12'>
-          <button>d</button>
-        </div>
-        <div className='pure-u-11-12'>
-          {url}
-        </div>
-      </div>
+      <UrlEditor key={url} url={url} store={PlayerStore} />
     );
   },
 
