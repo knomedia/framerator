@@ -7,7 +7,7 @@ var Link = Router.Link;
 
 var HeaderBar = React.createClass({
 
-  mixins: [playerStoreListener, Router.State],
+  mixins: [playerStoreListener, Router.State, Router.Navigation],
 
   getCurrentIndex () {
     var paramIndex = parseInt(this.getParams().id, 10);
@@ -20,6 +20,25 @@ var HeaderBar = React.createClass({
   getInitialState () {
     return {
       showing: false
+    }
+  },
+
+  componentDidMount () {
+    document.addEventListener('keyup', this.handleKeyUp);
+  },
+
+  componentWillUnmount () {
+    document.removeEventListener('keyup', this.handleKeyUp);
+  },
+
+  handleKeyUp (e) {
+    var keyMap = {
+      37: 'prevIndex',
+      39: 'nextIndex'
+    }
+    if (keyMap[e.keyCode] ) {
+      var targetIndex = urlHelper[keyMap[e.keyCode]](this.getCurrentIndex());
+      this.transitionTo('play', {id: targetIndex});
     }
   },
 
