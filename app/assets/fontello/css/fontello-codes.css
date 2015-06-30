@@ -10,3 +10,5 @@
 .icon-cancel-circled-outline:before { content: '\e808'; } /* '' */
 .icon-cancel-circled:before { content: '\e809'; } /* '' */
 .icon-link:before { content: '\e80a'; } /* '' */
+.icon-plus-outline:before { content: '\e80b'; } /* '' */
+.icon-plus-circled:before { content: '\e80c'; } /* '' */

@@ -13,6 +13,12 @@
       "src": "fontawesome"
     },
     {
+      "uid": "a66cdc7278e6b33b8bd44a141f5e1a8d",
+      "css": "plus-circled",
+      "code": 59404,
+      "src": "entypo"
+    },
+    {
       "uid": "815503841e980c848f55e0271deacead",
       "css": "link",
       "code": 59402,
@@ -28,6 +34,12 @@
       "uid": "3327862df439988139b61814143b7a42",
       "css": "cancel-circled",
       "code": 59401,
+      "src": "typicons"
+    },
+    {
+      "uid": "0677f879e75956571d8cbbb478487c47",
+      "css": "plus-outline",
+      "code": 59403,
       "src": "typicons"
     },
     {
