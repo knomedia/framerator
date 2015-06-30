@@ -1,57 +1,63 @@
 var React = require('react');
 var PlayerStore = require('../stores/player_store');
-var playerStoreListener = require('../mixins/player_store_listener');
 var Router = require('react-router');
 
-var intervalId;
+var timeoutId;
 
 var urlHelper = require('../lib/url_helper')(PlayerStore);
 
 var FrameRotator = React.createClass({
 
-  mixins: [playerStoreListener, Router.State],
+  mixins: [Router.State, Router.Navigation],
 
   getInitialState () {
+    var st = PlayerStore.getState();
     return {
-      previousUrl: undefined,
-      currentUrl: undefined
+      urls: st.urls,
+      displayDuration: st.displayDuration,
+      active: st.active
     }
   },
 
   componentDidMount () {
+    PlayerStore.addChangeListener(this.onPlayerStoreChange);
     if (this.state.active) {
-      //this.scheduleRotation(100);
+      this.scheduleRotation();
     }
-    //window.setTimeout( () =>
-      //this.setState({
-      //  currentUrl: this.props.url
-      //}),
-      //100 );
+  },
+
+  componentWillUnmount () {
+    if (timeoutId) {
+      window.clearInterval(timeoutId);
+    }
+    PlayerStore.removeChangeListener(this.onPlayerStoreChange);
+  },
+
+  onPlayerStoreChange () {
+    var st = PlayerStore.getState();
+    var newState = {
+      urls: st.urls,
+      displayDuration: st.displayDuration,
+      active: st.active
+    }
+    var callback = undefined;
+    if (st.active && this.state.active === false) {
+      callback = this.rotateUrls;
+    }
+    this.setState(st, callback);
   },
 
   scheduleRotation (delay) {
-    //delay = delay || this.state.displayDuration;
-    //window.setTimeout(this.rotateUrls, delay);
+    delay = delay || this.state.displayDuration;
+    timeoutId = window.setTimeout(this.rotateUrls, delay);
   },
 
   rotateUrls () {
-    //if (this.state.active) {
-    //  var idx = this.state.currentIndex;
-    //  idx++;
-    //  if (idx >= this.state.urls.length) {
-    //    idx = 0;
-    //  }
-    //  PlayerStore.setState({currentIndex: idx}, this.scheduleRotation);
-    //}
-  },
-
-  componentWillReceiveProps (newProps) {
-    //if (this.props.url !== newProps.url) {
-    //  this.setState({
-    //    previousUrl: this.state.currentUrl,
-    //    currentUrl: newProps.url
-    //  });
-    //}
+    if (this.state.active) {
+      var nextId = urlHelper.nextIndex(this.getCurrentIndex());
+      this.scheduleRotation();
+      this.transitionTo('play', {id: nextId});
+    }
   },
 
   getCurrentIndex () {

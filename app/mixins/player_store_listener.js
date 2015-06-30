@@ -6,7 +6,6 @@ module.exports = {
     var st = PlayerStore.getState();
     return {
       urls: st.urls,
-      currentIndex: st.currentIndex,
       displayDuration: st.displayDuration,
       active: st.active
     }
@@ -24,7 +23,6 @@ module.exports = {
     var st = PlayerStore.getState();
     var newState = {
       urls: st.urls,
-      currentIndex: st.currentIndex,
       displayDuration: st.displayDuration,
       active: st.active
     }

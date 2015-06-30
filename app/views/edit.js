@@ -19,7 +19,7 @@ var Edit = React.createClass({
 
   handleAddClick () {
     var allUrls = this.state.urls;
-    allUrls.push('https://www.google.com');
+    allUrls.push('http://example.com');
     PlayerStore.setState({urls: allUrls}, function() {
       // wait for it
       window.setTimeout(function() {
