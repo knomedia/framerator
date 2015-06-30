@@ -31,6 +31,10 @@ var UrlEditor = React.createClass({
     if (e.key === 'Enter') {
       this.refs.link.getDOMNode().focus();
     }
+    if (e.key === 'Escape') {
+      this.refs.urlField.getDOMNode().value = this.props.url;
+      this.refs.link.getDOMNode().focus();
+    }
   },
 
   handleDeleteClick () {
