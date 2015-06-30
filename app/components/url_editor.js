@@ -87,7 +87,7 @@ var UrlEditor = React.createClass({
   render () {
     var url = this.props.url
     return (
-      <div key={url} className='pure-g'>
+      <div key={url} className='UrlEditor pure-g'>
         <div className='pure-u-1-24'>
           <button className='non-button' onClick={this.handleDeleteClick}>
             <i className='icon-cancel-circled-outline red' />

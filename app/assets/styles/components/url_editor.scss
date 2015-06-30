@@ -1,3 +1,16 @@
+.UrlEditor {
+  margin-bottom: 15px;
+  padding: 10px;
+  background: none;
+  border-radius: $radius;
+}
+.UrlEditor:nth-of-type(odd) {
+  background: $superWhite;
+}
+
+.UrlEditor__Url {
+  word-wrap: break-word;
+}
 .UrlEditor__Link {
   a, a:visited {
     color: $primary;
