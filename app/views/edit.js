@@ -2,6 +2,8 @@ var React = require('react');
 var PlayerStore = require('../stores/player_store');
 var playerStoreListener = require('../mixins/player_store_listener');
 var UrlEditor = require('../components/url_editor');
+var Router = require('react-router');
+var Link = Router.Link;
 
 var Edit = React.createClass({
 
@@ -79,7 +81,16 @@ var Edit = React.createClass({
   render () {
     return (
       <div className='Edit'>
-        <h1>Framerator Settings</h1>
+        <div className='pure-g'>
+          <div className='pure-u-2-3'>
+            <h1>Framerator Settings</h1>
+          </div>
+          <div className='pure-u-1-3' style={{textAlign: 'right', marginTop: '22px'}}>
+            <Link to='play' params={{id: 1}} className='pure-button primary'>
+              ▶
+            </Link>
+          </div>
+        </div>
         {this.renderForm()}
         {this.renderUrlManager()}
       </div>
