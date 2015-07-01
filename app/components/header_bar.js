@@ -124,7 +124,7 @@ var HeaderBar = React.createClass({
       style.backgroundColor = 'red';
     }
     return (
-      <Link to='play' params={{id: id}}>
+      <Link to='play' params={{id: id}} key={id}>
         <div className='HeaderBar__UrlDot' style={style}>
         </div>
       </Link>
