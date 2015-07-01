@@ -17,6 +17,7 @@ var routes = (
   <Route name='main' path='/' handler={require('./main')}>
     <Route name='edit' path='edit' handler={require('./views/edit')} />
     <Route name='play' path=':id' handler={require('./views/play')} />
+    <DefaultRoute handler={require('./views/default_reroute')} />
   </Route>
 );
 
