@@ -78,6 +78,10 @@ var FrameRotator = React.createClass({
     }
   },
 
+  handlePlayClick () {
+    PlayerStore.setState({active: true});
+  },
+
   renderUrlList (currentUrl) {
     return this.state.urls.map(function(u) {
       var style = {};
@@ -126,25 +130,38 @@ var FrameRotator = React.createClass({
     var triad = this.getUrlTriad();
     return (
       <div>
-      <div className="FrameRotator">
-        <iframe key={triad.prev}
-                ref='iframe0'
-                src={triad.prev}
-                style={{display: 'none'}}
-                allowTransparency={true}
-        />
-        <iframe key={triad.current}
-                ref='iframe1'
-                src={triad.current}
-                allowTransparency={true}
-        />
-        <iframe key={triad.next}
-                ref='iframe2'
-                src={triad.next}
-                style={{display: 'none'}}
-                allowTransparency={true}
-        />
-      </div>
+        <div className="FrameRotator">
+          <iframe key={triad.prev}
+                  ref='iframe0'
+                  src={triad.prev}
+                  style={{display: 'none'}}
+                  allowTransparency={true}
+          />
+          <iframe key={triad.current}
+                  ref='iframe1'
+                  src={triad.current}
+                  allowTransparency={true}
+          />
+          <iframe key={triad.next}
+                  ref='iframe2'
+                  src={triad.next}
+                  style={{display: 'none'}}
+                  allowTransparency={true}
+          />
+        </div>
+        { (!this.state.active)?
+            (
+              <div className='FrameRotator__PlayButton'
+                   tabIndex={0}
+                   onClick={this.handlePlayClick}
+              >
+                <span className='FrameRotator__PlayButton__text'>
+                  ▶
+                </span>
+              </div>
+            )
+            : null
+        }
       </div>
     );
   },
