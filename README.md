@@ -2,6 +2,7 @@
 
 a client side iframe rotator
 
+
 ## X-Frame-Options
 
 The sites you care about should be doing what they can to do keep users from
@@ -10,6 +11,7 @@ typically includes serving `X-Frame-Options` to disable being loaded in
 iframes. As such framerator, out of the box, may be of limited functionality
 for you. Put it together with a server-side proxying solution, and you're in
 business.
+
 
 ## Usage
 
@@ -25,6 +27,11 @@ duration for which to display url. Hit play and let it cycle through 'em.
 
 That's run a webpack build (with a watcher) and serve the `www` directory on
 port `8080`.
+
+
+## TODOs
+
+* drag-n-drop to change order of urls
 
 
 ## Contributing
