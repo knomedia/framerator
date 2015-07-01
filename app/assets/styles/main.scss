@@ -12,6 +12,10 @@ body {
   color: $almostDark;
 }
 
+.pure-button:focus {
+  outline: solid 2px $blue;
+}
+
 .non-button {
   border: none;
   background: none;

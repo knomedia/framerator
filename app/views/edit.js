@@ -30,7 +30,19 @@ var Edit = React.createClass({
   },
 
   handleUploadClick () {
-    console.log('upload');
+    this.refs.fileInput.getDOMNode().click();
+  },
+
+  handleFileSelect (e) {
+    var fileInput = this.refs.fileInput.getDOMNode();
+    window.fileInput = fileInput;
+    var file = fileInput.files[0];
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      var st = JSON.parse(e.target.result);
+      PlayerStore.setState(st);
+    }
+    reader.readAsText(file);
   },
 
   getDownloadData () {
@@ -94,17 +106,25 @@ var Edit = React.createClass({
           <h1>Framerator Settings</h1>
         </div>
         <div className='pure-u-1-3' style={{textAlign: 'right', marginTop: '22px'}}>
+          <input type='file'
+                 ref='fileInput'
+                 style={{display: 'none'}}
+                 onChange={this.handleFileSelect}
+          />
+          { (this.state.urls.length) ?
+
+            (<a className='pure-button primary Edit__Button'
+               download='framerator_settings.json'
+               href={this.getDownloadData()}
+            >
+              <i className='icon-download-outline' />
+            </a>)
+          : null }
           <button className='pure-button primary Edit__Button'
                   onClick={this.handleUploadClick}
           >
             <i className='icon-upload-outline' />
           </button>
-          <a className='pure-button primary Edit__Button'
-             download='framerator_settings.json'
-             href={this.getDownloadData()}
-          >
-            <i className='icon-download-outline' />
-          </a>
           <Link to='play' params={{id: 1}} className='pure-button primary'>
             ▶
           </Link>
