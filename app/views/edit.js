@@ -29,6 +29,15 @@ var Edit = React.createClass({
     });
   },
 
+  handleUploadClick () {
+    console.log('upload');
+  },
+
+  getDownloadData () {
+    var settings = JSON.stringify(PlayerStore.getState());
+    return "data:text/json," + settings;
+  },
+
   renderForm () {
     return (
       <form className='pure-form' onSubmit={this.handleSubmit}>
@@ -78,19 +87,48 @@ var Edit = React.createClass({
     );
   },
 
+  renderHeading () {
+    return (
+      <div className='pure-g'>
+        <div className='pure-u-2-3'>
+          <h1>Framerator Settings</h1>
+        </div>
+        <div className='pure-u-1-3' style={{textAlign: 'right', marginTop: '22px'}}>
+          <button className='pure-button primary Edit__Button'
+                  onClick={this.handleUploadClick}
+          >
+            <i className='icon-upload-outline' />
+          </button>
+          <a className='pure-button primary Edit__Button'
+             download='framerator_settings.json'
+             href={this.getDownloadData()}
+          >
+            <i className='icon-download-outline' />
+          </a>
+          <Link to='play' params={{id: 1}} className='pure-button primary'>
+            ▶
+          </Link>
+        </div>
+      </div>
+    );
+  },
+
+  renderImportExport () {
+    return (
+      <div className='pure-g'>
+        <div className='pure-u-1-8'>
+        </div>
+        <div className='pure-u-1-8'>
+        </div>
+      </div>
+    );
+  },
+
   render () {
     return (
       <div className='Edit'>
-        <div className='pure-g'>
-          <div className='pure-u-2-3'>
-            <h1>Framerator Settings</h1>
-          </div>
-          <div className='pure-u-1-3' style={{textAlign: 'right', marginTop: '22px'}}>
-            <Link to='play' params={{id: 1}} className='pure-button primary'>
-              ▶
-            </Link>
-          </div>
-        </div>
+        {this.renderHeading()}
+        {this.renderImportExport()}
         {this.renderForm()}
         {this.renderUrlManager()}
       </div>

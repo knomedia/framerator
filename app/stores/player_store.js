@@ -7,7 +7,6 @@ function setDefault(attr, def) {
     PlayerStore.setState(st);
   }
 }
-setDefault('currentIndex', 0);
 setDefault('displayDuration', 7000);
 setDefault('active', true);
 setDefault('urls', []);
